@@ -123,24 +123,17 @@
 
             }
             function calculateNextArrival(frequency, firstTrainTime) {
-                console.log(frequency, firstTrainTime)
+              
                 var firstTimeConverted = moment(firstTrainTime, "HH:mm").subtract(1, "years");
                 var currentTime = moment();
-                console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
+              
                 var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
-                console.log(diffTime);
+              
                 var tRemainder = diffTime % frequency;
                 var minutesAway = frequency - tRemainder;
-                console.log(minutesAway);
+               
                 var nextTrainTime = moment().add(minutesAway, "minutes").format("HH:mm");
-                console.log(nextTrainTime);
-
-                // // remainder = diff%frequency
-                // // nextTrainMinAway = frequency-remainder;
-
-                    // var nextTrainTime="08:02";
-                    // var minutesAway=2;
-
+                
                 return [minutesAway, nextTrainTime];
             }
             function addtableEntry(table) {
@@ -155,22 +148,18 @@
             }
             $("#submitButton").click(function () {
                 event.preventDefault();
-                // var tr = $("<tr>");
+               
                 var trainName = $("#trainName").val();
-                // addTableItem(tr, employeename);
+                
 
                 var destination = $("#destination").val()
-                // addTableItem(tr, role);
+               
 
                 var frequency = $("#frequency").val()
-                // addTableItem(tr, startDate);
-                // addTableItem(tr, "0");
+               
 
                 var firstTrainTime = $("#firstTrainTime").val()
-                // addTableItem(tr, monthlyRate);
-                // addTableItem(tr, "0");
-                // $("#tableBody").append(tr);
-
+               
 
 
 
@@ -181,19 +170,13 @@
                     frequency: frequency,
                     firstTrainTime: firstTrainTime,
                     dateAdded: firebase.database.ServerValue.TIMESTAMP
-                   // firstTimeConverted: firstTimeConverted,
-                 //   nextTrain: nextTrain
+               
 
                 });
             });
 
             database.ref().orderByChild("dateadded").on("child_added", function (childSnapshot) {
-                console.log(childSnapshot.val().trainName);
-                console.log(childSnapshot.val().destination);
-                console.log(childSnapshot.val().frequency);
-                console.log(childSnapshot.val().firstTrainTime);
-              //  console.log(childSnapshot.val().firstTimeConverted);
-              //  console.log(childSnapshot.val().nextTrain);
+                     
                 addtableEntry(childSnapshot.val());
             });
 
