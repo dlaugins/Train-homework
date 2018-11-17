@@ -1,0 +1,11 @@
+#jumbo{
+    background-image: url("images/background.jpg")   
+}
+h1{
+    color:white;
+    font-weight:bold;
+    font-size:28px}
+.card-header{
+    background-color:#aed7dd;
+    font-size: 20px
+}
